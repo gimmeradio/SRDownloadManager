@@ -11,7 +11,9 @@
 #define SRDownloadDirectory self.saveFilesDirectory ?: [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject \
 stringByAppendingPathComponent:NSStringFromClass([self class])]
 
-#define SRFileName(URL) [URL lastPathComponent] // use URL's last path component as the file's name
+#define SRFileQuery(URL) [([URL query] ? [URL query] : @"") stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]
+
+#define SRFileName(URL) [[URL lastPathComponent] stringByAppendingString:SRFileQuery(URL)] // use URL's last path component and query as the file's name
 
 #define SRFilePath(URL) [SRDownloadDirectory stringByAppendingPathComponent:SRFileName(URL)]
 
