@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SRDownloadModel.h"
+#import <CommonCrypto/CommonDigest.h>
 
 typedef NS_ENUM(NSInteger, SRWaitingQueueMode) {
     SRWaitingQueueModeFIFO,
