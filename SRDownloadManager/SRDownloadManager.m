@@ -140,6 +140,7 @@ stringByAppendingPathComponent:NSStringFromClass([self class])]
     // bytes=x-  ==  x byte ~ end
     // bytes=-y  ==  head ~ y byte
     NSMutableURLRequest *requestM = [NSMutableURLRequest requestWithURL:URL];
+    [requestM setValue:@"gzip;q=0,deflate,sdch" forHTTPHeaderField:@"Accept-Encoding"];
     [requestM setValue:[NSString stringWithFormat:@"bytes=%ld-", [self hasDownloadedLength:URL]] forHTTPHeaderField:@"Range"];
     NSURLSessionDataTask *dataTask = [self.downloadSession dataTaskWithRequest:requestM];
     dataTask.taskDescription = SRFileName(URL);
